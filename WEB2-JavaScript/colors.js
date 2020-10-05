@@ -9,7 +9,7 @@ var Links = {
     $('a').css('color',color);
   }
 }
-  var Body = {
+var Body = {
     setColor:function(color){
       //document.querySelector('body').style.color = color;
       $('body').css('color', color);
@@ -18,19 +18,19 @@ var Links = {
       //document.querySelector('body').style.backgroundColor = color;
       $('body').css('backgroundColor', color)
     }
+}
+function nightDayHandler(self){
+  var target = document.querySelector('body');
+  if(self.value == 'night'){
+    Body.setBackgroundColor('black');
+    Body.setColor('white')
+    self.value = 'day'
+    Links.setColor('powderblue')
   }
-  function nightDayHandler(self){
-    var target = document.querySelector('body');
-    if(self.value == 'night'){
-      Body.setBackgroundColor('black');
-      Body.setColor('white')
-      self.value = 'day'
-      Links.setColor('powderblue')
-    }
-    else{
-      Body.setBackgroundColor('white');
-      Body.setColor('black')
-      self.value = 'night'
-      Links.setColor('blue');
-    }
+  else{
+    Body.setBackgroundColor('white');
+    Body.setColor('black')
+    self.value = 'night'
+    Links.setColor('blue');
   }
+}
