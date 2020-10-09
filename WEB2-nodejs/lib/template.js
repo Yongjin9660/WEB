@@ -20,10 +20,10 @@ module.exports = {
     var list = '<ul>';
     var i=0;
     while(i < filelist.length){
-      list = list + `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`
-      i=i+1;
+      list += `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`
+      i++;
     }
-    list = list +'</ul>';
+    list += '</ul>';
     return list;
   }
 }

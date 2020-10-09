@@ -10,12 +10,21 @@ var app = http.createServer(function(request, response){
     var _url = request.url;
     var queryData = url.parse(_url, true).query;
     var pathname = url.parse(_url, true).pathname;
+
+    console.log('_url : '+ _url);
+    console.log(queryData);
+    console.log('pathname : ' + pathname);
+
     if(pathname === '/'){
       if(queryData.id === undefined){
         fs.readdir('./data', function(error, filelist){
           var title = 'Welcome';
           var description = 'Hello, Node.js';
+
+          console.log(filelist);
+
           var list = template.list(filelist);
+
           var html = template.html(title, list, `<h2>${title}</h2>${description}`,
           `<a href="/create">create</a>`);
           response.writeHead(200);
@@ -24,6 +33,9 @@ var app = http.createServer(function(request, response){
       } else {
         fs.readdir('./data', function(error, filelist){
           var filteredId = path.parse(queryData.id).base;
+
+          console.log(filteredId);
+
           fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
             var title = queryData.id;
             var sanitizedTitle = sanitizeHtml(title);
@@ -63,7 +75,7 @@ var app = http.createServer(function(request, response){
     } else if(pathname === "/create_process"){
       var body = '';
       request.on('data', function(data){
-        body = body + data;
+        body += data;
       });
       request.on('end', function(){
         var post = qs.parse(body);
